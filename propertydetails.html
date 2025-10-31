@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Single Property | VILLA</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500;700&display=swap');
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    body {
+      color: #191919;
+      font-size: 15px;
+    }
+    /* Top Bar */
+    .top-bar {
+      background: #fff;
+      font-size: 13px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .top-bar .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-bar-left, .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .top-bar i {
+      color: white;
+      background-color: grey;
+      border-radius: 50%;
+      padding: 5px;
+      margin-right: 6px;
+    }
+    .top-bar-right a {
+      color: #c8c8c8;
+      margin-left: 15px;
+      font-size: 15px;
+      transition: color .15s;
+    }
+    .top-bar-right i:hover {
+      color: #ff5400;
+    }
+
+    /* Header */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .header-logo {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #222;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .header-nav a {
+      color: #222;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0 6px;
+      transition: color 0.18s;
+    }
+    .header-nav a.active, .header-nav a:hover {
+      color: #ff5400;
+    }
+    .header-nav .visit-btn {
+      background: #191919;
+      color: #fff;
+      padding: 10px 28px;
+      border: none;
+      border-radius: 18px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      margin-left: 18px;
+      font-weight: 600;
+      transition: background .2s;
+    }
+    .header-nav .visit-btn i {
+      margin-right: 8px;
+      color: #ff5400;
+    }
+    .header-nav .visit-btn:hover {
+      background: #ff5400;
+      color: white;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: url('./images/video-bg.jpg') center center / cover no-repeat;
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-banner-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(12,12,12,0.63);
+      z-index: 1;
+    }
+    .hero-banner-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .hero-path {
+      color: #fff;
+      font-size: 13px;
+      margin-bottom: 18px;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+    .hero-path span {
+      opacity: 0.7;
+    }
+    .hero-main {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 36px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Main Section */
+    .single-property-main {
+      max-width: 1200px;
+      margin: 60px auto 0 auto;
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+    .single-property-img {
+      flex: 2.5;
+      background: #fff;
+      border-radius: 9px;
+      box-shadow: 0 2px 16px rgba(12,12,12,0.07);
+      overflow: hidden;
+      margin-bottom: 20px;
+      min-width: 480px;
+      max-width: 670px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .single-property-img img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .property-sidebar {
+      flex: 1.3;
+      background: #fff;
+      border-radius: 13px;
+      box-shadow: 0 2px 18px rgba(70,73,90,0.09);
+      padding: 28px 23px;
+      margin-top: 7px;
+      min-width: 210px;
+      max-width: 280px;
+    }
+    .sidebar-feature {
+      display: flex;
+      align-items: flex-start;
+      border-bottom: 1px solid #ebebeb;
+      padding-bottom: 18px;
+      margin-bottom: 32px;
+      gap: 11px;
+    }
+    .sidebar-feature:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .sidebar-icon {
+      width: 38px;
+      height: 38px;
+      color: #ff5400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      margin-right: 12px;
+    }
+    .sidebar-feature-details {
+      flex: 1;
+    }
+    .sidebar-feature-title {
+      font-weight: 700;
+      font-size: 16px;
+      color: #191919;
+    }
+    .sidebar-feature-desc {
+      font-size: 14px;
+      color: #bbb;
+      margin-top: 3px;
+    }
+
+    /* Property Content */
+    .single-property-content {
+      max-width: 760px;
+      background: none;
+      padding: 16px 0 0 0;
+      margin-left: 60px;
+    }
+    .property-type-detail {
+      background: #ffe3e3;
+      color: #fc7e66;
+      font-size: 12px;
+      border-radius: 5px;
+      padding: 4px 13px 4px 13px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .property-title {
+      font-size: 17px;
+      font-weight: bold;
+      margin: 10px 0 18px 0;
+      color: #191919;
+      line-height: 1.35;
+    }
+    .property-description {
+      margin-bottom: 28px;
+      color: #222;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .property-description a { color: #36a; text-decoration: underline; }
+
+    .property-detail-extra {
+      background: #fff;
+      border-radius: 9px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(12,12,12,0.07);
+      padding: 18px 24px;
+      font-size: 13px;
+      color: #191919;
+    }
+    .detail-extra-title {
+      color: #fb7e3e;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 9px;
+      display: block;
+      padding: 10px;
+      border-bottom:  1px solid rgba(128, 128, 128, 0.1);
+    }
+    .detail-extra-list {
+      color: #242424;
+      margin: 0 0 11px 0;
+      font-size: 14px;
+      padding: 10px;
+      
+    }
+    .detail-extra-list b {
+      color: #191919;
+      font-weight: bold;
+    }
+    .detail-extra-question {
+      margin: 10px 0;
+      font-weight: bold;
+      border-bottom:  1px solid rgba(128, 128, 128, 0.1);
+      padding: 10px;
+    }
+    .detail-extra-question::last{
+        border-bottom: none;
+    }
+
+    /* Best Deal Section */
+    .best-deal-section {
+      background: #fff;
+      margin-top: 60px;
+      padding: 48px 0 48px 0;
+      border-top: 1px solid #f2f2f2;
+      position: relative;
+    }
+    .deal-content-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 54px;
+      align-items: flex-start;
+    }
+    .best-deal-info {
+      flex: 1;
+    }
+    .best-deal-title {
+      color: #fb7e3e;
+      font-size: 12px;
+      letter-spacing: 2.3px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .best-deal-main-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 28px;
+      margin-top: 0;
+      color: #1a1a1a;
+    }
+    .deal-filter-bar {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      position: absolute;
+      top:100px;
+      right: 70px;
+    }
+    .deal-filter-bar button {
+      font-size: 13px;
+      border: none;
+      background: #191919;
+      color: #fff;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 8px 18px;
+      transition: background 0.18s;
+    }
+    .deal-filter-bar button.active, .deal-filter-bar button:first-child {
+      background: #ff5400;
+      color: #fff;
+    }
+
+    .best-deal-box {
+      background: #f7f7f7;
+      border-radius: 12px;
+      min-width: 230px;
+      max-width: 270px;
+      margin-right: 15px;
+      box-shadow: 0 2px 6px rgba(12,12,12,0.06);
+      font-size: 14px;
+      margin-top: 65px;
+      color: #898989;
+    }
+    .best-deal-box table {
+      width: 100%;
+      height: 300px;
+      font-size: inherit;
+      border-collapse: collapse;
+    }
+    .best-deal-box td {
+      padding: 4px 0;
+      border-bottom: 1px solid #ececec;
+      font-size: inherit;
+      color: #898989;
+    }
+    .best-deal-box td strong, .best-deal-box td b {
+      font-weight: bold;
+      color: #191919;
+      font-size: 16px;
+    }
+    .best-deal-box td:last-child {
+      border-bottom: none;
+    }
+
+    .deal-image {
+      flex: 1.6;
+      min-width: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 150px;
+    }
+    .deal-image img {
+      width: 76%;
+      height: 150px;
+      height: auto;
+      border-radius: 11px;
+      box-shadow: 0 3px 18px rgba(12,12,12,0.12);
+    }
+
+    .deal-info-text {
+      flex: 1;
+      padding-left: 14px;
+      font-size: 14px;
+      color: #232323;
+      max-width: 300px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      margin-top: 150px;
+    }
+    .deal-info-btn {
+      background: #191919;
+      color: #fff;
+      font-family: inherit;
+      padding: 13px 32px;
+      border-radius: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      margin-top: 13px;
+      margin-bottom: 0;
+      transition: background .2s;
+      box-shadow: 0 2px 8px rgba(34,34,34,0.09);
+    }
+    .deal-info-btn i {
+      margin-right: 7px;
+      color: #ff5400;
+      font-size: 15px;
+    }
+    .deal-info-btn:hover {
+      background: #ff5400;
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: #191919;
+      color: #fff;
+      padding: 30px;
+      margin-top: 0;
+      text-align: center;
+      font-size: 16px;
+      letter-spacing: .8px;
+    }
+    .footer span {
+      color: #ff5400;
+    }
+    @media (max-width: 1150px) {
+      .single-property-main, .deal-content-wrapper {
+        flex-direction: column;
+        gap: 35px;
+        align-items: center;
+      }
+      .single-property-img, .property-sidebar, .best-deal-info, .deal-image, .deal-info-text, .best-deal-box {
+        max-width: 90vw;
+      }
+      .deal-image img {
+        width: 100%;
+        min-width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-envelope"></i>info@company.com</span>
+        <span><i class="fa-solid fa-location-dot"></i>Sunny Isles Beach, FL 33160</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <span class="header-logo">VILLA</span>
+      <nav class="header-nav">
+        <a href="./index.html">Home</a>
+        <a href="./properties.html">Properties</a>
+        <a href="#" class="active">Property Details</a>
+        <a href="./contact.html">Contact Us</a>
+        <button class="visit-btn"><i class="fa-regular fa-calendar"></i>Schedule a visit</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-banner-overlay"></div>
+    <div class="hero-banner-content">
+      <div class="hero-path">
+        <span>Home</span> / <span>SINGLE PROPERTY</span>
+      </div>
+      <div class="hero-main">SINGLE PROPERTY</div>
+    </div>
+  </div>
+
+  <!-- Property Details Section -->
+  <div class="single-property-main">
+    <div class="single-property-img">
+      <img src="./images/property-01.jpg" alt="Single Property">
+    </div>
+    <div class="property-sidebar">
+      <div class="sidebar-feature">
+        <span class="sidebar-icon"><i class="fa-solid fa-building"></i></span>
+        <div class="sidebar-feature-details">
+          <div class="sidebar-feature-title">450 m2</div>
+          <div class="sidebar-feature-desc">Total Flat Space</div>
+        </div>
+      </div>
+      <div class="sidebar-feature">
+        <span class="sidebar-icon"><i class="fa-solid fa-file-contract"></i></span>
+        <div class="sidebar-feature-details">
+          <div class="sidebar-feature-title">Contract</div>
+          <div class="sidebar-feature-desc">Contract Ready</div>
+        </div>
+      </div>
+      <div class="sidebar-feature">
+        <span class="sidebar-icon"><i class="fa-solid fa-credit-card"></i></span>
+        <div class="sidebar-feature-details">
+          <div class="sidebar-feature-title">Payment</div>
+          <div class="sidebar-feature-desc">Payment Process</div>
+        </div>
+      </div>
+      <div class="sidebar-feature">
+        <span class="sidebar-icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <div class="sidebar-feature-details">
+          <div class="sidebar-feature-title">Safety</div>
+          <div class="sidebar-feature-desc">24/7 Under Control</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-property-content">
+    <span class="property-type-detail">Apartment</span>
+    <div class="property-title">24 New Street Miami, OR 24560</div>
+    <div class="property-description">
+      Get <b>the best villa agency</b> HTML CSS Bootstrap Template for your company website. XYZ provides you <a href="#">the best service </a> in the world. Please tell your friends about it. Thank you. Cloud bread kogi bitters pitchfork shoreditch tumblr yr succulents single-origin coffee schlitz ennui paleo umami you probably haven't heard of them ugh hello.
+      <br><br>
+      When you look for best websites, you can simply type XYZ in any search engine website. In addition, you can type XYZ Digital Marketing, XYZ Corporate Layouts, etc. Master cleanse +1 intelligentsia swag post-ironic, slow-carb chambray knausgaard PBR&B DSA poutine neutra cardigan hoodie pop-up.
+    </div>
+    <div class="property-detail-extra">
+      <span class="detail-extra-title">Best useful links?</span>
+      <div class="detail-extra-list">
+        Dolor <b>almesit amet</b>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonyx satin crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <a href="#">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+      <div class="detail-extra-question">How does this work?</div>
+      <div class="detail-extra-question">Why is Villa the best?</div>
+    </div>
+  </div>
+
+  <!-- Best Deal Section -->
+  <div class="best-deal-section">
+    <div class="deal-content-wrapper">
+      <div class="best-deal-info">
+        <span class="best-deal-title">| BEST DEAL</span>
+        <h2 class="best-deal-main-title">Find Your Best Deal<br>Right Now!</h2>
+        
+        <div class="best-deal-box">
+          <table>
+            <tr><td>Total Flat Space</td><td style="text-align:right;"><b>540 m2</b></td></tr>
+            <tr><td>Floor number</td><td style="text-align:right;"><b>3</b></td></tr>
+            <tr><td>Number of rooms</td><td style="text-align:right;"><b>8</b></td></tr>
+            <tr><td>Parking Available</td><td style="text-align:right;"><b style="color:#fb7e3e;">Yes</b></td></tr>
+            <tr><td>Payment Process</td><td style="text-align:right;"><b>Bank</b></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="deal-image">
+        <img src="./images/property-04.jpg" alt="deal apartment">
+      </div>
+      <div class="deal-info-text">
+        <div class="deal-filter-bar" style="margin-bottom:18px; justify-content: flex-end;">
+        <button class="active">Apartment</button>
+        <button>Villa House</button>
+        <button>Penthouse</button>
+      </div>
+        <b>All Info About Apartment</b>
+        <br>
+        <p style="color:#898989;">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quisid ipsum suspendisse.
+          <br><br>
+          Swag famly pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman Dr kitch twee talayaki fake hallo venmo after messenger poutine next level humblebrag swag franzen.
+        </p>
+        <button class="deal-info-btn"><i class="fa-regular fa-calendar"></i>Schedule a visit</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    Copyright © 2048 Villa Agency Co., Ltd. All Rights Reserved. Design By <span>Sumanth Reddy</span>
+  </div>
+</body
